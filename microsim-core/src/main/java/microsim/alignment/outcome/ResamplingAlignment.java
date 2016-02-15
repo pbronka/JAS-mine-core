@@ -56,7 +56,7 @@ public class ResamplingAlignment<T extends EventListener> extends AbstractOutcom
 		else
 			list.addAll(agentList);
 		
-		Collections.shuffle(list);
+		Collections.shuffle(list, SimulationEngine.getRnd());
 		int n = list.size();
 		double sum = 0;
 		
@@ -163,7 +163,7 @@ public class ResamplingAlignment<T extends EventListener> extends AbstractOutcom
 		else
 			list.addAll(agentList);
 		
-		Collections.shuffle(list);
+		Collections.shuffle(list, SimulationEngine.getRnd());
 		int n = list.size();
 		int sum = 0;
 		
