@@ -2,8 +2,8 @@ package microsim.statistics.regression;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -111,7 +111,7 @@ public class LinearRegression implements ILinearRegression {
 				throw new IllegalArgumentException("The LinearRegression.computeScore(MultiKeyCoefficientMap amap, Map<String, Double> values) method is designed to be used when the LinearRegression's instance field of type MultiKeyCoefficientMap has only one key in the MultiKey.  Try using other LinearRegression.getScore() methods that cater for more than one key in the MultiKey.");
 			}
 			double sum = 0.0;
-			HashSet<String> regressors = new HashSet<String>();
+			LinkedHashSet<String> regressors = new LinkedHashSet<String>();
 
 			for (Object multiKey : amap.keySet()) {
 				final String key = (String) ((MultiKey) multiKey).getKey(0);
@@ -204,7 +204,7 @@ public class LinearRegression implements ILinearRegression {
 		String[] coeffMultiMapKeysNames = coeffMultiMap.getKeysNames();
 		try {			
 			Map<?, ?> describedData = PropertyUtils.describe(iDblSrc);
-			Map<String, String> propertyMap = new HashMap<String, String>();
+			Map<String, String> propertyMap = new LinkedHashMap<String, String>();
 			
 			for(String key : coeffMultiMapKeysNames) {
 
@@ -527,7 +527,7 @@ public class LinearRegression implements ILinearRegression {
 	}
 	
 	private static Map<String, Double> extractMapNumbersAndBooleans(Object object) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-		Map<String, Double> resultMap = new HashMap<String, Double>();
+		Map<String, Double> resultMap = new LinkedHashMap<String, Double>();
 		
 		Map<?, ?> describedData = PropertyUtils.describe(object);
 		
@@ -561,7 +561,7 @@ public class LinearRegression implements ILinearRegression {
 	
 	private static Map<String, String> extractMapNumbersBooleansEnumsAndStrings(Object object) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
 		
-		Map<String, String> resultMap = new HashMap<String, String>();
+		Map<String, String> resultMap = new LinkedHashMap<String, String>();
 		
 		Map<?, ?> describedData = PropertyUtils.describe(object);
 		

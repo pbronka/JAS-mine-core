@@ -1,7 +1,7 @@
 package microsim.engine;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -114,7 +114,7 @@ public class SimulationEngine extends Thread {
 	protected SimulationEngine() {
 		eventList = new EventList();
 		models = new ArrayList<SimulationManager>();
-		modelMap = new HashMap<String, SimulationManager>();
+		modelMap = new LinkedHashMap<String, SimulationManager>();
 		randomSeed = System.currentTimeMillis();
 		rnd = new Random(randomSeed);
 		engineListeners = new ArrayList<EngineListener>();
@@ -275,7 +275,7 @@ public class SimulationEngine extends Thread {
 		pause();
 		eventList = new EventList();
 		models = new ArrayList<SimulationManager>();
-		modelMap = new HashMap<String, SimulationManager>();
+		modelMap = new LinkedHashMap<String, SimulationManager>();
 		randomSeed = System.currentTimeMillis();
 		rnd = new Random(randomSeed);		
 	}
@@ -563,7 +563,8 @@ public class SimulationEngine extends Thread {
 	}
 	
 	public Random getRandom() {
-		return new Random(rnd.nextLong());		//TODO:  This seems to be creating a new random number generator with a randomly generated seed, every time getRandom is called.  Is this the reason why two simulation runs with the same inputs, parameters and seeds do not produce identical outputs?  Should we correct this to just return the rnd field?
+//		return new Random(rnd.nextLong());
+		return rnd;
 	}
 
 	public String getMultiRunId() {

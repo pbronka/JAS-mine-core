@@ -2,7 +2,7 @@ package microsim.statistics.regression;
 
 import java.util.AbstractList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
@@ -405,8 +405,8 @@ public class RegressionUtils {
 		String[] valuesNames = map.getValuesNames();
 		int numValueColumns = valuesNames.length;		
 		
-		HashMap<String, Integer> indexOfValuesNameMap = new HashMap<String, Integer>();
-		HashMap<String, Integer> valuesMap = new HashMap<String, Integer>();
+		LinkedHashMap<String, Integer> indexOfValuesNameMap = new LinkedHashMap<String, Integer>();
+		LinkedHashMap<String, Integer> valuesMap = new LinkedHashMap<String, Integer>();
 		int index = 0;
 		int estimateIndex = 0;
 		for(int i = 0; i < numValueColumns; i++) {

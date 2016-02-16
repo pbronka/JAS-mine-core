@@ -1,8 +1,8 @@
 package microsim.data;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
-public class MultiKeyHashMap extends HashMap<Integer, MultiKeyHashMap.EntryValue> {
+public class MultiKeyHashMap extends LinkedHashMap<Integer, MultiKeyHashMap.EntryValue> {
 
 	private static final long serialVersionUID = 4939180438185813582L;
 

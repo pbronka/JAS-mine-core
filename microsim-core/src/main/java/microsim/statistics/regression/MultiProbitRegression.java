@@ -1,7 +1,7 @@
 package microsim.statistics.regression;
 
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
@@ -70,7 +70,7 @@ public class MultiProbitRegression<T extends Enum<T>> implements IMultipleChoice
 	//Original version was incorrect - did not normalise probabilities.  Corrected by Ross Richardson.
 //	@Override
 	public T eventType(Object individual) {		
-		Map<T, Double> probs = new HashMap<T, Double>();
+		Map<T, Double> probs = new LinkedHashMap<T, Double>();
 
 		double denominator = 0.; 
 		
@@ -119,7 +119,7 @@ public class MultiProbitRegression<T extends Enum<T>> implements IMultipleChoice
 	 * @return
 	 */
 	public T eventType(Map<String, Double> values) {
-		Map<T, Double> probs = new HashMap<T, Double>();
+		Map<T, Double> probs = new LinkedHashMap<T, Double>();
 
 		double denominator = 0.0;
 
@@ -171,7 +171,7 @@ public class MultiProbitRegression<T extends Enum<T>> implements IMultipleChoice
 	}
 	
 	public <E extends Enum<E>> T eventType(IDoubleSource iDblSrc, Class<E> Regressors, Class<T> enumType) {		
-		Map<T, Double> probs = new HashMap<T, Double>();
+		Map<T, Double> probs = new LinkedHashMap<T, Double>();
 
 		double denominator = 0.; 
 		

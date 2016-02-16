@@ -2,7 +2,7 @@ package microsim.alignment.probability;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +30,7 @@ public class SBDLAlignment<T> extends AbstractProbabilityAlignment<T> {
 		Collections.shuffle(list, SimulationEngine.getRnd());
 		int n = list.size();
 		
-		Map<T, Double> map = new HashMap<T, Double>();
+		Map<T, Double> map = new LinkedHashMap<T, Double>();
 		for (int i=0; i<n; i++) {
 			T agent = list.get(i);
 			double p = closure.getProbability(agent);

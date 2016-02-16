@@ -1,7 +1,7 @@
 package microsim.engine;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -234,7 +234,7 @@ public abstract class MultiRun extends Thread implements EngineListener, Experim
 	
 	public Map<String, Object> getConfiguration(int counter) {
 		
-		HashMap<String, Object> current = new HashMap<String, Object>();
+		LinkedHashMap<String, Object> current = new LinkedHashMap<String, Object>();
 		for (int i = 0; i < parameterDomains.size(); i++) {
 			ParameterDomain parameterDomain = parameterDomains.get(i);
 			

@@ -4,8 +4,11 @@ import microsim.exception.SimulationException;
 
 public abstract class AbstractEvent implements Event {
 
+	private static long eventCounter = Long.MIN_VALUE;
+	
 	protected double time;
-	protected int ordering;		//If two events have time fields with equal value, their ordering fields will determine the order in which the events are fired, with lower ordering values fired before high ordering values.  If ordering fields are also equal, the two events will be fired in random order.
+	protected int ordering;		//If two events have time fields with equal value, their ordering fields will determine the order in which the events are fired, with lower ordering values fired before high ordering values.  If ordering fields are also equal, the event that was scheduled first will be fired first in the schedule (determined comparing the eventNumber field).
+	private long eventNumber = eventCounter++;		//Designed to break randomness of cases when time and ordering of two events is the same.  In this case, the first event that was scheduled will be fired first in the schedule.
 	protected double loop;
 
 	/** 
@@ -73,7 +76,7 @@ public abstract class AbstractEvent implements Event {
 	 * random order.
 	 */
 	public int compareTo(Event e) {
-		//Ross Ricahrdson: See Joshua Bloch's Effective Java (2nd Ed.) page 65.  "For floating-point fields, use Double.compare..."
+		//Ross Richardson: See Joshua Bloch's Effective Java (2nd Ed.) page 65.  "For floating-point fields, use Double.compare..."
 		int compareDouble = Double.compare(time, e.getTime());
 		if(compareDouble > 0)
 			return 1;
@@ -85,8 +88,19 @@ public abstract class AbstractEvent implements Event {
 			return 1;
 		if (ordering < e.getOrdering())
 			return -1;
+		
+		//time and ordering must be equal, so now check which event was scheduled first and return an int such that the first event is fired first.
+		if(eventNumber > ((AbstractEvent)e).eventNumber) {
+//			System.out.println("this eventNumber is greater:" + eventNumber + " vs " + ((AbstractEvent)e).eventNumber);
+			return 1;
+		}
+		else if(eventNumber < ((AbstractEvent)e).eventNumber) {
+//			System.out.println("the other eventNumber is greater:" + eventNumber + " vs " + ((AbstractEvent)e).eventNumber);
+			return -1;
+		}
+		else throw new RuntimeException("Two events have the same eventNumber.  This should not be possible!\n" + Thread.currentThread().getStackTrace());
 				
-		return 0;			//Time and ordering fields are equal
+//		return 0;			//Time, ordering and eventNumber fields are equal - this should not be possible!
 
 		// Michele Sonnessa:
 		// NOTICE:

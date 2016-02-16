@@ -1,6 +1,6 @@
 package microsim.space;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -35,14 +35,14 @@ import java.util.Map;
  */
 public class SparseObjectSpace extends AbstractSpace<Object> implements ObjectSpace 
 {
-  protected HashMap<HashKey, Object> m;
+  protected LinkedHashMap<HashKey, Object> m;
 
   /** Create a copy of the given grid.
    *  @param grid The source grid. */
   public SparseObjectSpace(AbstractSpace<Object> grid)
   {
     super(grid.getXSize(), grid.getYSize());
-    m = new HashMap<HashKey, Object>();
+    m = new LinkedHashMap<HashKey, Object>();
     for (int i = 0; i < grid.getXSize(); i++) {
 		for (int j = 0; j < grid.getYSize(); j++) {
 	      Object o = grid.get(i, j);
@@ -57,7 +57,7 @@ public class SparseObjectSpace extends AbstractSpace<Object> implements ObjectSp
   public SparseObjectSpace(int xSize, int ySize)
   {
     super(xSize, ySize);
-    m = new HashMap<HashKey, Object>();
+    m = new LinkedHashMap<HashKey, Object>();
   }
 
   /** Return the object stored at the given position.

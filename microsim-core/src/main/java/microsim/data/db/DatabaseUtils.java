@@ -3,7 +3,7 @@ package microsim.data.db;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -222,7 +222,7 @@ public class DatabaseUtils {
 		if (entityManagerFactory == null) {
 			try {
 				// Create the EntityManagerFactory
-				Map<String, String> configOverrides = new HashMap<String, String>();
+				Map<String, String> configOverrides = new LinkedHashMap<String, String>();
 				if (autoUpdate) 
 					configOverrides.put("hibernate.hbm2ddl.auto", "update");
 				configOverrides.put("hibernate.archive.autodetection", "class");
@@ -262,7 +262,7 @@ public class DatabaseUtils {
 		if (entityManagerFactory == null) {
 			try {
 				// Create the EntityManagerFactory
-				Map<String, String> configOverrides = new HashMap<String, String>();
+				Map<String, String> configOverrides = new LinkedHashMap<String, String>();
 				configOverrides.put("hibernate.hbm2ddl.auto", "update");
 				configOverrides.put("hibernate.archive.autodetection", "class");
 
@@ -312,7 +312,7 @@ public class DatabaseUtils {
 		if (outEntityManagerFactory == null) {
 			try {
 				// Create the EntityManagerFactory
-				Map<String, String> configOverrides = new HashMap<String, String>();
+				Map<String, String> configOverrides = new LinkedHashMap<String, String>();
 				configOverrides.put("hibernate.hbm2ddl.auto", "update");
 				configOverrides.put("hibernate.archive.autodetection", "class");
 				// configOverrides.put("hibernate.ejb.interceptor.session_scoped",

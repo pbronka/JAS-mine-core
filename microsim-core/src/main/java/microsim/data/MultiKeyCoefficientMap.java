@@ -1,10 +1,12 @@
 package microsim.data;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.commons.collections.keyvalue.MultiKey;
 import org.apache.commons.collections.map.AbstractHashedMap;
+import org.apache.commons.collections.map.AbstractLinkedMap;
+import org.apache.commons.collections.map.LinkedMap;
 import org.apache.commons.collections.map.MultiKeyMap;
 
 public class MultiKeyCoefficientMap extends MultiKeyMap {
@@ -16,9 +18,10 @@ public class MultiKeyCoefficientMap extends MultiKeyMap {
 	
 	public MultiKeyCoefficientMap(String[] keys, String[] values) {
 		super();
+		MultiKeyCoefficientMap.decorate(new LinkedMap());
 		this.keys = keys;
 		if (values != null) {
-			valuesMap = new HashMap<String, Integer>();
+			valuesMap = new LinkedHashMap<String, Integer>();
 			for (int i = 0; i < values.length; i++) {
 				valuesMap.put(values[i], i);
 			}
@@ -28,11 +31,14 @@ public class MultiKeyCoefficientMap extends MultiKeyMap {
 			throw new IllegalArgumentException("Keys array cannot be null");		
 	}
 
-	public MultiKeyCoefficientMap(AbstractHashedMap map, String[] keys, String[] values) {
+//	public MultiKeyCoefficientMap(AbstractHashedMap map, String[] keys, String[] values) {
+	public MultiKeyCoefficientMap(AbstractLinkedMap map, String[] keys, String[] values) {		//Change the API????
 		super(map);
+		MultiKeyCoefficientMap.decorate(new LinkedMap());		//TODO: Would this work, if map does not a LinkedMap??? 
+		
 		this.keys = keys;
 		if (values != null) {
-			valuesMap = new HashMap<String, Integer>();
+			valuesMap = new LinkedHashMap<String, Integer>();
 			for (int i = 0; i < values.length; i++) {
 				valuesMap.put(values[i], i);
 			}
