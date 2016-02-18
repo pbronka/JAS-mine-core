@@ -438,7 +438,7 @@ public class SimulationEngine extends Thread {
 	 *            The new random seed.
 	 */
 	public void setRandomSeed(long newSeed) {
-		rnd.setSeed((int) newSeed);
+		rnd.setSeed(newSeed);
 		randomSeed = newSeed;
 	}
 

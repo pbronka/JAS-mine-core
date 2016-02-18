@@ -43,6 +43,13 @@
 	        </extension>
 	    </extensions>		
 	</build>
+	<repositories> 
+	  <repository> 
+	    <id>central</id> 
+	    <name>bintray</name> 
+	    <url>http://jcenter.bintray.com</url> 
+	  </repository> 
+	</repositories> 
 	<dependencies>
 		<dependency>
 			<groupId>log4j</groupId>
@@ -95,6 +102,12 @@
 			<artifactId>commons-math3</artifactId>
 			<version>3.3</version>
 		</dependency>
+		<dependency> 
+		  <groupId>org.testng</groupId> 
+		  <artifactId>testng</artifactId> 
+		  <version>6.9.10</version> 
+		  <scope>test</scope> 
+		</dependency> 
 		<!-- dependency>
 			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
