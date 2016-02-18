@@ -12,6 +12,7 @@ import microsim.engine.SimulationEngine;
 import org.apache.commons.collections.MapIterator;
 import org.apache.commons.collections.keyvalue.MultiKey;
 import org.apache.commons.math3.distribution.MultivariateNormalDistribution;
+import org.apache.commons.math3.random.RandomGenerator;
 
 public class RegressionUtils {
 
@@ -455,7 +456,7 @@ public class RegressionUtils {
 //			System.out.print("\n");
 //		}
 		
-		MultivariateNormalDistribution multiNormDist = new MultivariateNormalDistribution(means, covarianceMatrix);
+		MultivariateNormalDistribution multiNormDist = new MultivariateNormalDistribution((RandomGenerator) SimulationEngine.getRnd(), means, covarianceMatrix);
 		means = multiNormDist.sample();		//This returns the bootstrapped values of the estimates
 		
 		//Create new multikeycoefficientmap to return with new bootstrapped column, in addition to estimate and standard error data
