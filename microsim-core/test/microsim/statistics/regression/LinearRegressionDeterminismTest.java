@@ -11,6 +11,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.BeforeClass;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
@@ -25,10 +31,44 @@ public class LinearRegressionDeterminismTest {
 	
 	  @Test
 	  public void LinearRegressionTest() {
-		  for(int i = 0; i < collectionLength; i++) {
-			  OurAgent agent = agents.getAgentList().get(i);
+		  for(OurAgent agent : agents.getAgentList()) {
 			  System.out.println("Agent id " + agent.getId() + ", age " + agent.getAge() + ", score " + linReg.getScore(agent));
 		  }
+		  System.out.println("\n");
+		  
+		  for(OurAgent agent : agents.getAgentList()) {
+			  System.out.println("Agent id " + agent.getId() + ", age " + agent.getAge() + ", score " + linReg.getScore(agent, AgentCollection.Regressors.class));
+		  }
+		  System.out.println("\n");
+
+		  List<OurAgent> list = new ArrayList<OurAgent>();		
+//			if (filter != null)
+//				CollectionUtils.select(agents.getAgentList(), filter, list);
+//			else
+				list.addAll(agents.getAgentList());
+		  for(OurAgent agent : list) {
+			  System.out.println("Agent id " + agent.getId() + ", age " + agent.getAge() + ", score " + linReg.getScore(agent));
+		  }
+		  System.out.println("\n");
+		  
+		  for(OurAgent agent : list) {
+			  System.out.println("Agent id " + agent.getId() + ", age " + agent.getAge() + ", score " + linReg.getScore(agent, AgentCollection.Regressors.class));
+		  }
+		  System.out.println("\n");
+			
+		  SimulationEngine.getInstance().setRandomSeed(0);
+		  System.out.println("A random number: " + SimulationEngine.getRnd().nextLong());
+		Collections.shuffle(list, SimulationEngine.getRnd());
+		  for(OurAgent agent : list) {
+			  System.out.println("Agent id " + agent.getId() + ", age " + agent.getAge() + ", score " + linReg.getScore(agent));
+		  }
+		  System.out.println("\n");
+		  
+		  for(OurAgent agent : list) {
+			  System.out.println("Agent id " + agent.getId() + ", age " + agent.getAge() + ", score " + linReg.getScore(agent, AgentCollection.Regressors.class));
+		  }
+		  System.out.println("\n");
+		  
 		  
 	  }
 

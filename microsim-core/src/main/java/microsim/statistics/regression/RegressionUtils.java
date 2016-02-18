@@ -434,6 +434,7 @@ public class RegressionUtils {
 			int rowIndex = indexOfValuesNameMap.get(regressor);
 			Object[] mapValuesRow = ((Object[])map.getValue(multiKey));
 			means[rowIndex] = ((Number)mapValuesRow[estimateIndex]).doubleValue();		//Should throw null pointer exception if the RHS returns null
+//			System.out.println(regressor + ", " + rowIndex + ", " + means[rowIndex]);
 			for(String covariableName : indexOfValuesNameMap.keySet()) {
 				int columnIndex = indexOfValuesNameMap.get(covariableName);
 				covarianceMatrix[rowIndex][columnIndex] = ((Number)mapValuesRow[valuesMap.get(covariableName)]).doubleValue();		//Should throw null pointer exception if the RHS returns null
@@ -478,7 +479,7 @@ public class RegressionUtils {
 //			}
 //			keyValues[multiKey.getKeys().length] = means[rowIndex];
 //			bootstrapMap.putValue(keyValues);
-//			System.out.println("regressor " + regressor + " coefficient " + bootstrapMap.getValue(multiKey));
+			System.out.println("regressor " + regressor + " coefficient " + bootstrapMap.getValue(multiKey));
 		}
 		return bootstrapMap;
 
